@@ -9,10 +9,17 @@ def start():
 
 
 def calculations():
-    dat_time = input("Чтоза время:")
-    real_time = datetime.strptime(dat_time, '%b %d %Y %I:%M%p')
+    real_time = datetime.strptime(time.localtime, '%b %d %Y %I:%M%p')
     print("Сейчас", real_time)
 
 
+def local_time():
+    now_time = time.asctime( time.localtime(time.time()))
+    print("Current time:", now_time)
+
+
 if __name__ == "__main__":
-    calculations()
+    # print(time.localtime())
+    local_time()
+
+
