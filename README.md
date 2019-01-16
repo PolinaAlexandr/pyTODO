@@ -12,7 +12,7 @@ Tasks:
     - List all tasks
         - Show all existing notes 
     - Delete task
-        - Delete selected task (by ip) 
+        - Delete selected task (by id) 
 
 Instruction: 
 - Run (path + ./ + basic command)
