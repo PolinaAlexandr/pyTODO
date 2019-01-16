@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 
-import datetime
-
 import sqlite3
 
 
@@ -38,6 +36,10 @@ def list_tasks():
     print("All tasks")
 
 
+def undefined_command():
+    print('Undefined command "{}". Use pytodo --help to learn about available commands'.format(command))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
@@ -47,12 +49,10 @@ if __name__ == "__main__":
 
     command = args.command
 
-    # TODO remove if-elif
-    if command == 'list':
-        list_tasks()
-    elif command == 'new':
-        create_tasks()
-    elif command == 'delete':
-        delete_task()
-    else:
-        print('Undefined command "{}". Use pytodo --help to learn about available commands'.format(command))
+    commands = {
+        'new': create_tasks,
+        'delete': delete_task,
+        'list': list_tasks
+    }
+
+    commands.get(command, undefined_command)()
