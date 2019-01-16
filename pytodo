@@ -6,10 +6,6 @@ import datetime
 import sqlite3
 
 
-def list_tasks():
-    print("All tasks")
-
-
 def create_tasks():
     print("Create new task")
 
@@ -20,15 +16,15 @@ def create_tasks():
 
     cursor = con.cursor()
 
-    cursor.execute(""" CREATE TABLE IF NOT EXISTS all_notes ({cn} text)""".\
-                   format(cn=note_name))
-    cursor.execute(""" INSERT INTO all_notes (note) VALUES ({nn}, 'test')""".\
-                   format(nn=new_note))
+    cursor.execute("CREATE TABLE IF NOT EXISTS all_notes (name, note, current_id)")
 
-    cursor.execute("""UPDATE all_notes SET {cn}=(note_name) WHERE {nn}=(new_note)""".\
-                   format(cn=note_name, nn=new_note))
+    cursor.execute(
+        "INSERT INTO all_notes (name, note, current_id) VALUES (?,?,?)",
+        (note_name, new_note, cursor.lastrowid)
+    )
 
     con.commit()
+    cursor.close()
     con.close()
 
     print("You could watch your note by 'list'")
@@ -36,6 +32,10 @@ def create_tasks():
 
 def delete_task():
     print("Delete task")
+
+
+def list_tasks():
+    print("All tasks")
 
 
 if __name__ == "__main__":
