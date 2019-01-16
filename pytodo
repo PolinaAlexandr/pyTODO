@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import argparse
 
+import datetime
+
+import sqlite3
+
 
 def list_tasks():
     print("All tasks")
@@ -8,6 +12,26 @@ def list_tasks():
 
 def create_tasks():
     print("Create new task")
+
+    new_note = input("Enter new note:")
+    note_name = input("Choose title for this note:")
+
+    con = sqlite3.connect("sqlite_new.db")
+
+    cursor = con.cursor()
+
+    cursor.execute(""" CREATE TABLE IF NOT EXISTS all_notes ({cn} text)""".\
+                   format(cn=note_name))
+    cursor.execute(""" INSERT INTO all_notes (note) VALUES ({nn}, 'test')""".\
+                   format(nn=new_note))
+
+    cursor.execute("""UPDATE all_notes SET {cn}=(note_name) WHERE {nn}=(new_note)""".\
+                   format(cn=note_name, nn=new_note))
+
+    con.commit()
+    con.close()
+
+    print("You could watch your note by 'list'")
 
 
 def delete_task():
