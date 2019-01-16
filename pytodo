@@ -4,7 +4,7 @@ import argparse
 import sqlite3
 
 
-def create_tasks():
+def create_task():
     print("Create new task")
 
     new_note = input("Enter new note:")
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     command = args.command
 
     commands = {
-        'new': create_tasks,
+        'new': create_task,
         'delete': delete_task,
         'list': list_tasks
     }
