@@ -28,8 +28,9 @@ def create_task():
     print("You could watch your note by 'list'")
 
 
-def delete_task():
-    print("Delete task")
+def delete_task(con, cursor):
+
+    cursor.execute("DELETE FROM all_notes WHERE id = '?'", (delete, ''))
 
 
 def list_tasks():
