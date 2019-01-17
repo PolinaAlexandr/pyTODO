@@ -6,7 +6,7 @@ import sqlite3
 import sys
 
 
-def create_task():
+def create_task(args):
     print("Create new task")
 
     new_note = input("Enter new note:")
@@ -16,10 +16,10 @@ def create_task():
 
     cursor = con.cursor()
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS all_notes (name, note, current_id)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS all_notes (name text, note text, task_id int)")
 
     cursor.execute(
-        "INSERT INTO all_notes (name, note, current_id) VALUES (?,?,?)",
+        "INSERT INTO all_notes (name, note, task_id) VALUES (?,?,?)",
         (note_name, new_note, cursor.lastrowid)
     )
 
@@ -30,26 +30,21 @@ def create_task():
     print("You could watch your note by 'list'")
 
 
-def delete_task():
+def delete_task(args):
 
-    parser.add_argument('id')
-    subparser = parser.add_subparsers()
-    # args = parser.parse_args(sys.argv[2:])
-    #
-    # con = sqlite3.connect("sqlite_new.db")
-    #
-    # cursor = con.cursor()
-    # #
-    # cursor.execute("DELETE FROM all_notes WHERE current_id = '?'", (delete, id))
+    con = sqlite3.connect("sqlite_new.db")
+
+    cursor = con.cursor()
+
+    cursor.execute("DELETE FROM all_notes WHERE task_id = ?", (args.task_id, ))
 
     con.commit()
     cursor.close()
-    con.commit()
-
+    con.close()
     print("Your updated journal is available by 'list'")
 
 
-def list_tasks():
+def list_tasks(args):
     print("All tasks")
 
     con = sqlite3.connect("sqlite_new.db")
@@ -67,23 +62,23 @@ def list_tasks():
         print(row)
 
 
-def undefined_command():
+def undefined_command(args):
     print('Undefined command "{}". Use pytodo --help to learn about available commands'.format(command))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers()
 
-    parser.add_argument('command', help='Command to run. Available commands: new, list, delete')
+    delete_parser = subparsers.add_parser('delete')
+    list_parser = subparsers.add_parser('list')
+    new_parser = subparsers.add_parser('new')
 
-    args = parser.parse_args()
+    delete_parser.add_argument('task_id', type=int)
 
-    command = args.command
+    delete_parser.set_defaults(func=delete_task)
+    list_parser.set_defaults(func=list_tasks)
+    new_parser.set_defaults(func=create_task)
 
-    commands = {
-        'new': create_task,
-        'delete': delete_task,
-        'list': list_tasks
-    }
-
-    commands.get(command, undefined_command)()
+    parsed_args = parser.parse_args()
+    parsed_args.func(parsed_args)
