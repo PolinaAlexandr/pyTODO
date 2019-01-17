@@ -3,6 +3,8 @@ import argparse
 
 import sqlite3
 
+import sys
+
 
 def create_task():
     print("Create new task")
@@ -29,19 +31,35 @@ def create_task():
 
 
 def delete_task():
-    parser.add_argument('id')
 
-    args = parser.parse_args()
+    parser.add_argument('id')
+    subparser = parser.add_subparsers()
+    # args = parser.parse_args(sys.argv[2:])
+    #
+    # con = sqlite3.connect("sqlite_new.db")
+    #
+    # cursor = con.cursor()
+    # #
+    # cursor.execute("DELETE FROM all_notes WHERE current_id = '?'", (delete, id))
+
+    con.commit()
+    cursor.close()
+    con.commit()
+
+    print("Your updated journal is available by 'list'")
+
+
+def list_tasks():
+    print("All tasks")
 
     con = sqlite3.connect("sqlite_new.db")
 
     cursor = con.cursor()
 
-    cursor.execute("DELETE FROM all_notes WHERE id = '?'", ('delete', id))
+    cursor.execute("SELECT * FROM all_notes WHERE type='table' ORDER BY name")
+    available_table = (cursor.fetchall())
 
-
-def list_tasks():
-    print("All tasks")
+    print(available_table)
 
 
 def undefined_command():
