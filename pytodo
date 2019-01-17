@@ -56,10 +56,15 @@ def list_tasks():
 
     cursor = con.cursor()
 
-    cursor.execute("SELECT * FROM all_notes WHERE type='table' ORDER BY name")
-    available_table = (cursor.fetchall())
+    cursor.execute("SELECT * FROM all_notes")
 
-    print(available_table)
+    rows = cursor.fetchall()
+
+    cursor.close()
+    con.close()
+
+    for row in rows:
+        print(row)
 
 
 def undefined_command():
