@@ -3,12 +3,13 @@
 Tasks:
 - <s>Create main useable interface</s>
 - Import and use datetime
-- Add SQLite module 
+- <s>Add SQLite module</s> 
 - Basic tasks:
  
     - New task 
-        - Add new note and deadline date
-        - Choose local datetime  
+        - <s>Add new note</s>
+        - Deadline date (not now)
+        - Start date  
     - List all tasks
         - Show all existing notes 
     - Delete task
