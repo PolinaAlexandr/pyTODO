@@ -28,9 +28,16 @@ def create_task():
     print("You could watch your note by 'list'")
 
 
-def delete_task(con, cursor):
+def delete_task():
+    parser.add_argument('id')
 
-    cursor.execute("DELETE FROM all_notes WHERE id = '?'", (delete, ''))
+    args = parser.parse_args()
+
+    con = sqlite3.connect("sqlite_new.db")
+
+    cursor = con.cursor()
+
+    cursor.execute("DELETE FROM all_notes WHERE id = '?'", ('delete', id))
 
 
 def list_tasks():
