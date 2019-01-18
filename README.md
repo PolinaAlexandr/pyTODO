@@ -11,10 +11,11 @@ Tasks:
         - Deadline date (not now)
         - Start date  
     - List all tasks
-        - Show all existing notes 
-    - Delete task
-        - Delete selected task (by id) 
+        - <s>Show all existing notes</s>
+        - show it as atring and without id 
+    - <s>Delete task</s>
+        - <s>Delete selected task (by id)</s> 
 
 Instruction: 
-- Run (path + ./ + basic command)
+- Run (path + ./ + basic command) or basic command & argument
   
