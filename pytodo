@@ -3,8 +3,6 @@ import argparse
 
 import sqlite3
 
-import sys
-
 
 def create_task(args):
     print("Create new task")
@@ -16,10 +14,10 @@ def create_task(args):
 
     cursor = con.cursor()
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS all_notes (name text, note text, task_id int)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS all_notes (ID INTEGER PRIMARY KEY AUTOINCREMENT, name text, note text)")
 
     cursor.execute(
-        "INSERT INTO all_notes (name, note, task_id) VALUES (?,?,?)",
+        "INSERT INTO all_notes (ID, name, note,) VALUES (,?,?)",
         (note_name, new_note, cursor.lastrowid)
     )
 
@@ -36,7 +34,7 @@ def delete_task(args):
 
     cursor = con.cursor()
 
-    cursor.execute("DELETE FROM all_notes WHERE task_id = ?", (args.task_id, ))
+    cursor.execute("DELETE FROM all_notes WHERE ID = ?", (args.ID, ))
 
     con.commit()
     cursor.close()
@@ -74,7 +72,7 @@ if __name__ == "__main__":
     list_parser = subparsers.add_parser('list')
     new_parser = subparsers.add_parser('new')
 
-    delete_parser.add_argument('task_id', type=int)
+    delete_parser.add_argument('ID', type=int)
 
     delete_parser.set_defaults(func=delete_task)
     list_parser.set_defaults(func=list_tasks)
