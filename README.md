@@ -2,19 +2,20 @@
 
 Tasks:
 - <s>Create main useable interface</s>
-- Import and use datetime
+- <s>Import and use datetime</s>
 - <s>Add SQLite module</s> 
-- Basic tasks:
+- <s>Basic tasks</s>:
  
-    - New task 
+    - <s>New task</s> 
         - <s>Add new note</s>
-        - Deadline date (not now)
-        - Start date  
-    - List all tasks
+        - <s>Deadline date</s>
+        - <s>Start date</s>  
+    - <s>List all tasks</s>
         - <s>Show all existing notes</s>
-        - show it as atring and without id 
+        
     - <s>Delete task</s>
         - <s>Delete selected task (by id)</s> 
+    - make deadline shorter, maybe
 
 Instruction: 
 - Run (path + ./ + basic command) or basic command & argument
