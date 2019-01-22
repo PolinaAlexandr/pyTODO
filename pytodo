@@ -61,10 +61,10 @@ def list_tasks(args):
     con.close()
     # for column in columns:
 
-    print("{:2} {:10} {:10}".format(columns[0], columns[1], columns[2]))
+    print("|{:2} | {:13} | {:10}".format(columns[0], columns[1], columns[2]))
 
     for row in rows:
-        print("{:2} {:8} {:>20}".format(row[0], row[1], row[2]))
+        print("|{:2} | {:13} | {:>20}".format(row[0], row[1], row[2]))
 
 
 def undefined_command(args):
