@@ -15,7 +15,7 @@ def create_task(args):
     cursor = con.cursor()
 
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS all_notes (task_id integer primary key autoincrement,name text, note text)"
+        "CREATE TABLE IF NOT EXISTS all_notes (id integer primary key autoincrement,name text, note text)"
     )
 
     cursor.execute(
@@ -36,7 +36,7 @@ def delete_task(args):
 
     cursor = con.cursor()
 
-    cursor.execute("DELETE FROM all_notes WHERE task_id = ?", (args.task_id, ))
+    cursor.execute("DELETE FROM all_notes WHERE id = ?", (args.id, ))
 
     con.commit()
     cursor.close()
@@ -61,10 +61,10 @@ def list_tasks(args):
     con.close()
     # for column in columns:
 
-    print("{:5} {:20} {:20}".format(columns[0], columns[1], columns[2]))
+    print("{:2} {:10} {:10}".format(columns[0], columns[1], columns[2]))
 
     for row in rows:
-        print("{:4} {:20} {:20}".format(row[0], row[1], row[2]))
+        print("{:2} {:8} {:>20}".format(row[0], row[1], row[2]))
 
 
 def undefined_command(args):
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     list_parser = subparsers.add_parser('list')
     new_parser = subparsers.add_parser('new')
 
-    delete_parser.add_argument('task_id', type=int)
+    delete_parser.add_argument('id', type=int)
 
     delete_parser.set_defaults(func=delete_task)
     list_parser.set_defaults(func=list_tasks)
