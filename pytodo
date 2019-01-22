@@ -2,6 +2,33 @@
 import argparse
 from _datetime import datetime, timedelta
 import sqlite3
+import os
+
+CREATE_TABLE_QUERY = (
+        'CREATE TABLE IF NOT EXISTS all_notes '
+        '(id integer primary key autoincrement,name text, note text, started date, deadline date)'
+)
+
+DATABASE_NAME = "tasks.db"
+
+DATABASE_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    DATABASE_NAME
+)
+
+
+def check_db():
+    if os.path.exists(DATABASE_PATH):
+        print("Tasks database already exists. Aborting initialization.")
+        return
+
+    print("No tasks database found. Initializing new database at path {}.".format(DATABASE_PATH))
+
+    con = sqlite3.connect(DATABASE_PATH)
+
+    cursor = con.cursor()
+
+    cursor.execute(CREATE_TABLE_QUERY)
 
 
 def create_task(args):
@@ -12,13 +39,9 @@ def create_task(args):
 
     end_time = datetime.strptime(input("Enter deadline date YY/MM/DD: "), '%Y/%m/%d')
 
-    con = sqlite3.connect("sqlite_new.db")
+    con = sqlite3.connect(DATABASE_PATH)
 
     cursor = con.cursor()
-
-    cursor.execute(
-         "CREATE TABLE IF NOT EXISTS all_notes (id integer primary key autoincrement,name text, note text, started date, deadline date)"
-    )
 
     cursor.execute(
         "INSERT INTO all_notes (name, note, started, deadline) VALUES (?,?,?,?)",
@@ -34,7 +57,7 @@ def create_task(args):
 
 def delete_task(args):
 
-    con = sqlite3.connect("sqlite_new.db")
+    con = sqlite3.connect(DATABASE_PATH)
 
     cursor = con.cursor()
 
@@ -49,7 +72,7 @@ def delete_task(args):
 def list_tasks(args):
     print("All tasks")
 
-    con = sqlite3.connect("sqlite_new.db")
+    con = sqlite3.connect(DATABASE_PATH)
 
     cursor = con.cursor()
 
@@ -88,4 +111,9 @@ if __name__ == "__main__":
     new_parser.set_defaults(func=create_task)
 
     parsed_args = parser.parse_args()
+
+    check_db()
+
     parsed_args.func(parsed_args)
+
+
