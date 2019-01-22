@@ -59,11 +59,12 @@ def list_tasks(args):
 
     cursor.close()
     con.close()
+    # for column in columns:
 
-    print(columns)
+    print("{:5} {:20} {:20}".format(columns[0], columns[1], columns[2]))
 
     for row in rows:
-        print("{:2} {:10} {:30}".format(row[0], row[1], row[2]))
+        print("{:4} {:20} {:20}".format(row[0], row[1], row[2]))
 
 
 def undefined_command(args):
