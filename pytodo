@@ -55,11 +55,15 @@ def list_tasks(args):
 
     rows = cursor.fetchall()
 
+    columns = [description[0] for description in cursor.description]
+
     cursor.close()
     con.close()
 
+    print(columns)
+
     for row in rows:
-        print("id {}, name {}, note {}".format(row[0], row[1], row[2]))
+        print("{:2} {:10} {:30}".format(row[0], row[1], row[2]))
 
 
 def undefined_command(args):
