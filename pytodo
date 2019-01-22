@@ -9,19 +9,20 @@ def create_task(args):
 
     new_note = input("Enter new note: ")
     note_name = input("Choose title for this note: ")
-    # start_time = datetime.now()
+
+    end_time = datetime.strptime(input("Enter deadline date YY/MM/DD: "), '%Y/%m/%d')
 
     con = sqlite3.connect("sqlite_new.db")
 
     cursor = con.cursor()
 
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS all_notes (id integer primary key autoincrement,name text, note text, started date)"
+         "CREATE TABLE IF NOT EXISTS all_notes (id integer primary key autoincrement,name text, note text, started date, deadline date)"
     )
 
     cursor.execute(
-        "INSERT INTO all_notes (name, note, started) VALUES (?,?,?)",
-        (note_name, new_note, datetime.now())
+        "INSERT INTO all_notes (name, note, started, deadline) VALUES (?,?,?,?)",
+        (note_name, new_note, datetime.now(), end_time)
     )
 
     con.commit()
@@ -61,10 +62,11 @@ def list_tasks(args):
     cursor.close()
     con.close()
 
-    print('\033[31m' + "|{:2} | {:13} | {:10} | {}".format(columns[0], columns[1], columns[2], columns[3]).upper() + '\033[00m')
+    print('\033[31m' + "|{:2} | {:15} | {:20} | {:30} | {:<40}".format(columns[0], columns[1], columns[2], columns[3],
+                                                                       columns[4]).upper() + '\033[00m')
 
     for row in rows:
-        print("|{:2} | {:<13} | {:<10} | {:10}".format(row[0], row[1], row[2], row[3]))
+        print("|{:2} | {:<15} | {:<20} | {:30} | {:<40}".format(row[0], row[1], row[2], row[3], row[4]))
 
 
 def undefined_command(args):
