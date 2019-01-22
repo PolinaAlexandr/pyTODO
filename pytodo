@@ -5,10 +5,10 @@ import sqlite3
 
 
 def create_task(args):
-    print("Create new task")
+    print("Create new task:")
 
-    new_note = input("Enter new note:")
-    note_name = input("Choose title for this note:")
+    new_note = input("Enter new note: ")
+    note_name = input("Choose title for this note: ")
 
     con = sqlite3.connect("sqlite_new.db")
 
