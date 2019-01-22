@@ -61,10 +61,10 @@ def list_tasks(args):
     con.close()
     # for column in columns:
 
-    print("|{:2} | {:13} | {:10}".format(columns[0], columns[1], columns[2]))
+    print('\x1b[6;30;42m' + "|{:2} | {:13} | {:10}".format(columns[0], columns[1], columns[2]).upper() + '\x1b[0m')
 
     for row in rows:
-        print("|{:2} | {:13} | {:>20}".format(row[0], row[1], row[2]))
+        print("|{:2} | {:<13} | {:<}".format(row[0], row[1], row[2]))
 
 
 def undefined_command(args):
@@ -87,5 +87,3 @@ if __name__ == "__main__":
 
     parsed_args = parser.parse_args()
     parsed_args.func(parsed_args)
-
-# print("nckjsnvk{:3} jkenck {:3}mlksdck".format())
