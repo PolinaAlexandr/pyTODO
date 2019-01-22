@@ -62,8 +62,8 @@ def list_tasks(args):
     cursor.close()
     con.close()
 
-    print('\033[31m' + "| {:2} | {:16} | {:55} | {:30} | {:<30}".format(columns[0], columns[1], columns[2], columns[3],
-                                                                       columns[4]).upper() + '\033[00m')
+    print('\033[47m''\033[31m' + "| {:2} | {:16} | {:55} | {:30} | {:<30}".format(columns[0], columns[1], columns[2], columns[3],
+                                                                       columns[4]).upper() + '\033[00m''\033[00m')
 
     for row in rows:
         print("| {:2} | {:<16} | {:<55} | {:30} | {:<30}".format(row[0], row[1], row[2], row[3], row[4]))
