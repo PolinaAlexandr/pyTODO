@@ -92,10 +92,6 @@ def list_tasks(args):
         print("| {:2} | {:<16} | {:<55} | {:30} | {:<30}".format(row[0], row[1], row[2], row[3], row[4]))
 
 
-def undefined_command(args):
-    print('Undefined command "{}". Use pytodo --help to learn about available commands'.format(command))
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers()
