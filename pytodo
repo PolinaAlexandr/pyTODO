@@ -91,9 +91,14 @@ if __name__ == "__main__":
     new_parser.set_defaults(func=create_task)
 
     parsed_args = parser.parse_args()
+    try:
+        check_db()
+        parsed_args.func(parsed_args)
+    except sqlite3.OperationalError:
+        print("Connection Error")
 
-    check_db()
 
-    parsed_args.func(parsed_args)
+
+
 
 
