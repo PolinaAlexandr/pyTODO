@@ -96,6 +96,8 @@ if __name__ == "__main__":
         parsed_args.func(parsed_args)
     except sqlite3.OperationalError:
         print("Connection Error")
+    except IndexError:
+        print("Tuple index out of range, check number of arguments")
 
 
 
