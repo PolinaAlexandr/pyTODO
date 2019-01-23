@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-from classes import Arguments
 from _datetime import datetime
 import sqlite3
 import os
@@ -36,27 +35,29 @@ def check_db():
 
 
 def create_task(args):
-    print("Create new task:")
-
+    print("Here you could create some notes!")
     new_note = input("Enter new note: ")
     note_name = input("Choose title for this note: ")
-    end_time = datetime.strptime(input("Enter deadline date YY/MM/DD: "), '%Y/%m/%d')
+    end_time = datetime.strptime(input("Enter deadline date YY/MM/DD/H/M: "), '%Y/%m/%d/%H/%M')
 
     with sqlite3.connect(DATABASE_PATH) as con:
         cursor = con.cursor()
         cursor.execute(
             "INSERT INTO all_notes (name, note, started, deadline) VALUES (?,?,?,?)",
+            # (Arguments.note_name, Arguments.new_note, datetime.now(), Arguments.end_time))
             (note_name, new_note, datetime.now(), end_time))
 
     print("You could watch your note by 'list'")
 
 
 def delete_task(args):
+    # print("Delete task by id: ")
     with sqlite3.connect(DATABASE_PATH) as con:
         cursor = con.cursor()
         cursor.execute("DELETE FROM all_notes WHERE id = ?", (args.id, ))
+        cursor.close()
 
-    print("Your updated journal is available by 'list'")
+        print("Your updated journal is available by 'list'")
 
 
 def list_tasks(args):
@@ -92,13 +93,17 @@ if __name__ == "__main__":
     new_parser.set_defaults(func=create_task)
 
     parsed_args = parser.parse_args()
+
     try:
         check_db()
         parsed_args.func(parsed_args)
+
     except sqlite3.OperationalError:
         print("Connection Error")
     except IndexError:
         print("Tuple index out of range, check number of arguments")
+
+
 
 
 
