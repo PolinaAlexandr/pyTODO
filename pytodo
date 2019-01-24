@@ -61,7 +61,7 @@ def delete_task(args):
 
 
 def list_tasks(args):
-    print("All tasks")
+    print('\033[47m''\033[31m'"All tasks"'\033[00m''\033[00m')
     with sqlite3.connect(DATABASE_PATH) as con:
         cursor = con.cursor()
 
