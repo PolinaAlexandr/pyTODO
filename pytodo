@@ -36,15 +36,14 @@ def check_db():
 
 def create_task(args):
     print("Here you could create some notes!")
-    new_note = input("Enter new note: ")
-    note_name = input("Choose title for this note: ")
+    new_note = input("Enter new note: ").capitalize()
+    note_name = input("Choose title for this note: ").capitalize()
     end_time = datetime.strptime(input("Enter deadline date YY/MM/DD/H/M: "), '%Y/%m/%d/%H/%M')
 
     with sqlite3.connect(DATABASE_PATH) as con:
         cursor = con.cursor()
         cursor.execute(
             "INSERT INTO all_notes (name, note, started, deadline) VALUES (?,?,?,?)",
-            # (Arguments.note_name, Arguments.new_note, datetime.now(), Arguments.end_time))
             (note_name, new_note, datetime.now(), end_time))
 
     print("You could watch your note by 'list'")
