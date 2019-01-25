@@ -20,10 +20,11 @@ DATABASE_PATH = os.path.join(
 
 def check_db():
     if os.path.exists(DATABASE_PATH):
-        print("Tasks database already exists. Aborting initialization.")
+        print('\033[47m''\033[31m'"Tasks database already exists. Aborting initialization."'\033[00m''\033[00m')
         return
 
-    print("No tasks database found. Initializing new database at path {}.".format(DATABASE_PATH))
+    print('\033[47m''\033[31m'"No tasks database found. Initializing new database at path {}.\033[00m''\033[00m'"
+          .format(DATABASE_PATH))
 
     database_dir = os.path.dirname(DATABASE_PATH)
 
@@ -36,8 +37,8 @@ def check_db():
 
 def create_task(args):
     print("Here you could create some notes!")
-    new_note = input("Enter new note: ").capitalize()
-    note_name = input("Choose title for this note: ").capitalize()
+    new_note = input("Enter new note: ")
+    note_name = input("Choose title for this note: ")
     end_time = datetime.strptime(input("Enter deadline date YY/MM/DD/H/M: "), '%Y/%m/%d/%H/%M')
 
     with sqlite3.connect(DATABASE_PATH) as con:
