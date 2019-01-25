@@ -15,8 +15,10 @@ Tasks:
         
     - <s>Delete task</s>
         - <s>Delete selected task (by id)</s> 
-    - make deadline shorter, maybe
+    - Add Classes
+    - Change file structure
+    - Add edit_task function 
 
 Instruction: 
-- Run (path + ./ + basic command) or basic command & argument
+- Run (path + ./ + basic command) or basic command & argument + enjoy your simple journal 
   
