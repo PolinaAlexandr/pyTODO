@@ -3,7 +3,6 @@ from datetime import datetime
 
 class Task:
 
-
     def __init__(self, name, note, deadline, id=None, started=datetime.now()):
         self.name = name
         self.note = note
