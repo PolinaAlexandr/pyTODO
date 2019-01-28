@@ -97,8 +97,15 @@ def list_tasks(args):
         task.print()
 
 
-def edit_task():
-    pass
+def edit_task(args):
+    new_task = user_input()
+    with sqlite3.connect(DATABASE_PATH) as con:
+        cursor = con.cursor()
+        cursor.execute("UPDATE all_notes SET name=?, note=?, started=?, deadline=? WHERE id =?",
+                       (args.id, new_task.name, new_task.note, new_task.started, new_task.deadline))
+        cursor.close()
+
+        print("Your updated journal is available by 'list'")
 
 
 if __name__ == "__main__":
