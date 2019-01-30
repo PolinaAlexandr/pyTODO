@@ -106,7 +106,7 @@ def edit_task(args):
         cursor.execute("SELECT name, note, deadline FROM all_notes WHERE id = ?", (args.id, ))
         row = cursor.fetchone()
         old_task = Task(row[0], row[1], row[2])
-        
+
         new_name = input("Your old task: {} . Enter new".format(row[0]))
         new_note = input("Your old note: {} . Enter new".format(row[1]))
         new_note_deadline = input("Your old deadline date: {} . Enter new".format(row[2]))
@@ -119,9 +119,9 @@ def edit_task(args):
 
         print(old_task.name, old_task.note, old_task.deadline)
 
-        # cursor = con.cursor()
-        # cursor.execute("UPDATE all_notes SET name = ?, note = ?, started = ?, deadline = ?,  WHERE id = ?",
-        #                (new_task.name, new_task.note, new_task.started, new_task.deadline, args.id))
+        cursor = con.cursor()
+        cursor.execute("UPDATE all_notes SET name = ?, note = ?, started = ?, deadline = ?,  WHERE id = ?",
+                       (old_task.name, old_task.note, old_task.started, old_task.deadline, args.id))
         cursor.close()
 
         print("Your updated journal is available by 'list'")
