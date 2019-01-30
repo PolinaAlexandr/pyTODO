@@ -15,10 +15,11 @@ Tasks:
         
     - <s>Delete task</s>
         - <s>Delete selected task (by id)</s> 
-    - Add Classes
-    - Change file structure
-    - Add edit_task function 
+    - <s>Add Classes</s>
+    - <s>Change file structure</s>
+    - Add edit_task function
+      - 1/2 done   
 
 Instruction: 
-- Run (path + ./ + basic command) or basic command & argument + enjoy your simple journal 
+- Run (path + ./ + basic command) or basic command & argument(useable only with 'delete' and 'edit') + enjoy your simple journal 
   
