@@ -109,7 +109,7 @@ def edit_task(args):
 
         new_name = input("Your old task name: {} . Enter new: ".format(old_task.name))
         new_note = input("Your old note: {} . Enter new: ".format(old_task.note))
-        new_note_deadline = input("Your old deadline date: {} . Enter new: ".format(old_task.deadline))
+        new_note_deadline = datetime.strptime(input("Your old deadline date: {} . Enter new: ".format(old_task.deadline)), '%Y/%m/%d/%H/%M')
         if new_name:
             old_task.name = new_name
         if new_note:
