@@ -76,7 +76,7 @@ def list_tasks(args):
 
         rows = cursor.fetchall()
         for row in rows:
-            task = Task(row[1], row[2], row[4], row[0], row[3])
+            task = Task.from_row(row)
 
             tasks.append(task)
 
@@ -105,7 +105,7 @@ def edit_task(args):
 
         cursor.execute("SELECT name, note, deadline FROM all_notes WHERE id = ?", (args.id, ))
         row = cursor.fetchone()
-        old_task = Task(row[0], row[1], row[2])
+        old_task = Task.from_row(row)
 
         new_name = input("Your old task name: {} . Enter new: ".format(old_task.name))
         new_note = input("Your old note: {} . Enter new: ".format(old_task.note))
@@ -153,8 +153,6 @@ if __name__ == "__main__":
         print("Connection Error")
     except IndexError:
         print("Tuple index out of range, check number of arguments")
-
-
 
 
 

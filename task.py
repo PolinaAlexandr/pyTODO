@@ -13,5 +13,9 @@ class Task:
     def print(self):
         print("| {:2} | {:<16} | {:<55} | {:30} | {:<30}".format(self.id, self.name, self.note, self.started, self.deadline).lower())
 
-
-
+    @classmethod
+    def from_row(cls, row):
+        if len(row) < 5:
+            return cls(row[0], row[1], row[2])
+        else:
+            return cls(row[1], row[2], row[4], row[0], row[3])
