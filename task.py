@@ -3,12 +3,12 @@ from datetime import datetime
 
 class Task:
 
-    def __init__(self, name, note, deadline, id=None, started=datetime.now()):
-        self.name = name
-        self.note = note
-        self.deadline = deadline
-        self.started = started
-        self.id = id
+    def __init__(self, **kwargs):
+        self.name = kwargs.get("name")
+        self.note = kwargs.get("note")
+        self.deadline = kwargs.get("deadline")
+        self.started = kwargs.get("started", datetime.now())
+        self.id = kwargs.get("id")
 
     def print(self):
         print("| {:2} | {:<16} | {:<55} | {:30} | {:<30}".format(self.id, self.name, self.note, self.started, self.deadline).lower())
@@ -16,6 +16,6 @@ class Task:
     @classmethod
     def from_row(cls, row):
         if len(row) < 5:
-            return cls(row[0], row[1], row[2])
+            return cls(name=row[0], note=row[1], deadline=row[2])
         else:
-            return cls(row[1], row[2], row[4], row[0], row[3])
+            return cls( id=row[0], name=row[1], note=row[2], started=row[3], deadline=row[4])

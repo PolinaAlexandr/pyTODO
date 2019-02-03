@@ -42,7 +42,7 @@ def user_input():
     note_name = input("Choose title for this note: ")
     end_time = datetime.strptime(input("Enter deadline date YY/MM/DD/H/M: "), '%Y/%m/%d/%H/%M')
 
-    return Task(note_name, new_note, end_time)
+    return Task(name=note_name, note=new_note,  deadline=end_time)
 
 
 def create_task(args):
