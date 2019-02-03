@@ -17,8 +17,10 @@ Tasks:
         - <s>Delete selected task (by id)</s> 
     - <s>Add Classes</s>
     - <s>Change file structure</s>
-    - Add edit_task function
-      - 1/2 done   
+    - <s>Edit_task function</s>
+        - <s>choosed by id also</s>
+    - Create context manager by myself
+    
 
 Instruction: 
 - Run (path + ./ + basic command) or basic command & argument(useable only with 'delete' and 'edit') + enjoy your simple journal 
