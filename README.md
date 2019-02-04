@@ -18,9 +18,9 @@ Tasks:
     - <s>Add Classes</s>
     - <s>Change file structure</s>
     - <s>Edit_task function</s>
-        - <s>choosed by id also</s>
+        - <s>by id also</s>
     - <s>Create context manager by myself</s>
-    -sql alchimy !
+    - sql alchemy! and django
     
 
 Instruction: 
