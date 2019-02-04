@@ -19,7 +19,8 @@ Tasks:
     - <s>Change file structure</s>
     - <s>Edit_task function</s>
         - <s>choosed by id also</s>
-    - Create context manager by myself
+    - <s>Create context manager by myself</s>
+    -sql alchimy !
     
 
 Instruction: 
