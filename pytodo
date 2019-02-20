@@ -8,6 +8,7 @@ from datetime import datetime
 
 from task import Task
 from db_manager import DBManager
+# from color_manager import Color
 
 
 CREATE_TABLE_QUERY = (

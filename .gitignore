@@ -4,3 +4,4 @@ sqlitestudio/
 *.db
 experiments/
 .venv/
+*.vscode/*
