@@ -1,28 +1,27 @@
-# PyTODO
+# PyTODO - clear python TODO simulation
+- Functionalities:
+- TODO functions:
+    - Add new task
+    - Show all tasks
+    - Delete task selected by id
+    - Edit task selected by id 
+- Special functions:
+    - Add task deadline (as date)
+    - Edit task deadline with task editing
+- Decoration:
+    - Colorful header of the base
+    - Ability to choose color theme
 
-Tasks:
-- <s>Create main useable interface</s>
-- <s>Import and use datetime</s>
-- <s>Add SQLite module</s> 
-- <s>Basic tasks</s>:
- 
-    - <s>New task</s> 
-        - <s>Add new note</s>
-        - <s>Deadline date</s>
-        - <s>Start date</s>  
-    - <s>List all tasks</s>
-        - <s>Show all existing notes</s>
-        
-    - <s>Delete task</s>
-        - <s>Delete selected task (by id)</s> 
-    - <s>Add Classes</s>
-    - <s>Change file structure</s>
-    - <s>Edit_task function</s>
-        - <s>by id also</s>
-    - <s>Create context manager by myself</s>
-    - sql alchemy! and django
-    
+- All descriptions:
+- User friendly:
+    - Understandable errors/exeption output
+    - Helpful links for all funclions 
+- Description:
+    - Use argparse lib
+    - Realized with classes and their methods
+    - Built-in context managers 
+    - Works with SQLite databases (sqlite3 lib)
 
 Instruction: 
-- Run (path + ./ + basic command) or basic command & argument(useable only with 'delete' and 'edit') + enjoy your simple journal 
+- Run (path + ./ + basic command) or basic command & argument(useable only with 'delete' and 'edit')
   
