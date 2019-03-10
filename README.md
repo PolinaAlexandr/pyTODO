@@ -1,14 +1,14 @@
 # PyTODO - clear python TODO simulation
 Functionalities:
- TODO functions:
+- TODO functions:
 - Add new task
 - Show all tasks
 - Delete task selected by id
 - Edit task selected by id 
- Special functions:
+Special functions:
 - Add task deadline (as date)
 - Edit task deadline with task editing
- Decoration:
+Decoration:
 - Colorful header of the base
 - Ability to choose color theme(task)
 Instruction: 
